@@ -22,15 +22,16 @@ public class RobotTest extends TestBase {
 	static final String sitemapFile = "sitemap.xml";
 	static final String yahoo = "https://search.yahoo.com/";
 	static final String google = "https://www.google.com/";
-	
+
 	public RobotTest() {
+		// what is this for?
 	}
-	
+
 	@DataProvider(name = "url-list")
 	public static Object[] urlList() {
 		return new Object [] {yahoo,google};
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void sitemapTest(String url) {
 		String sitemapText = getFileText(url, sitemapFile);
@@ -38,14 +39,14 @@ public class RobotTest extends TestBase {
 		new Assertion().assertFalse(sitemapText.isEmpty());
 		log.info(url + ":\tsitemap.xml - PASS");
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void robotTest( String url ) {
 		String robotText = getFileText(url, robotFile);
 		new Assertion().assertFalse(robotText.isEmpty());
 		log.info(url + ":\tRobots.txt - PASS");
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void nonZeroPageTitle(String url)
 	{
@@ -53,7 +54,7 @@ public class RobotTest extends TestBase {
 		new Assertion().assertFalse(driver.getTitle().isEmpty());
 		log.info(url + ":\tNonzero page title - PASS");
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void nonZeroMetaKeywords(String url)
 	{
@@ -63,7 +64,7 @@ public class RobotTest extends TestBase {
 		new Assertion().assertFalse(metaKeywordsContent.isEmpty());
 		log.info(url + ":\tNonzero meta keywords - PASS");
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void nonZeroMetaDescription(String url)
 	{
@@ -73,12 +74,12 @@ public class RobotTest extends TestBase {
 		new Assertion().assertFalse(metaDescriptionContent.isEmpty());
 		log.info(url + ":\tNonzero meta description - PASS");
 	}
-	
+
 	@Test(dataProvider = "url-list")
 	public void allImagesOnPageHaveNonZeroAltTags(String url){
 		driver.get(url);
 		List<WebElement> imageTagList = driver.findElements(By.cssSelector("img"));
-		
+
 		for(WebElement imageTag: imageTagList)
 		{
 			String altContent = imageTag.getAttribute("alt");
@@ -87,7 +88,7 @@ public class RobotTest extends TestBase {
 		new SoftAssert().assertAll();
 		log.info(url + ":\tAll images on page have nonzero alt tags - PASS");
 	}
-	
+
 	public String getFileText(String url, String fileName) {
 		String fileContents="";
 		try {
