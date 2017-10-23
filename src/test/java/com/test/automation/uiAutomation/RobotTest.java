@@ -25,6 +25,7 @@ public class RobotTest extends TestBase {
 
 	public RobotTest() {
 		// what is this for?
+		//hah?
 	}
 
 	@DataProvider(name = "url-list")
