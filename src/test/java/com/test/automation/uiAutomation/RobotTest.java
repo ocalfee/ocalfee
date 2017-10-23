@@ -26,6 +26,7 @@ public class RobotTest extends TestBase {
 	public RobotTest() {
 		// what is this for?
 		//hah?
+		// why do you need the explicit constructor?
 	}
 
 	@DataProvider(name = "url-list")
